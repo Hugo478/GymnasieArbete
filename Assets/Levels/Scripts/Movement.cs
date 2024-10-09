@@ -9,17 +9,14 @@ public class Movement : MonoBehaviour
 
 
 
-    private void Update()
-    {
-        float xInput = Input.GetAxisRaw("Horizontal");
-        float yInput = Input.GetAxisRaw("Vertical");
-        Vector2 movement = new Vector2(xInput, yInput);
-        if (movement.magnitude > 0)
-        {
-            movement.Normalize();
+    private void Update() {
+        
+        body.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, body.velocity.y);
+
+        if(Input.GetKey(KeyCode.Space)){
+            body.velocity = new Vector2(body.velocity.x, speed);
         }
 
-        transform.Translate(movement * speed * Time.deltaTime);
     }
 
 
